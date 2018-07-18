@@ -1,0 +1,16 @@
+{
+  "name": "test-brd-log",
+  "version": "1.0.0",
+  "description": "",
+  "main": "entry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "brd-log": "file:../..",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0"
+  }
+}

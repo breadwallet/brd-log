@@ -1,0 +1,25 @@
+{
+  "name": "brd-log",
+  "version": "0.0.1",
+  "description": "A simple, modern logging framework ",
+  "main": "logger.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/breadwallet/brd-log.git"
+  },
+  "author": "Daniel Staudigel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/breadwallet/brd-log/issues"
+  },
+  "homepage": "https://gitlab.com/breadwallet/brd-log#README",
+  "devDependencies": {
+    "tape": "^4.9.1"
+  }
+}
