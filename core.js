@@ -12,6 +12,7 @@ module.exports = {
     
     (function caller(middleware) {
       return function(hash,...args) {
+        if(typeof middleware[0] != 'function') return;
         var next = caller(middleware.slice(1));
         middleware[0](next,hash,...args);
       };
