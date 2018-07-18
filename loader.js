@@ -18,7 +18,7 @@ module.exports = function(content, sourceMap) {
 //  console.log("request: ",this.request);
 //  console.log("QUERY: ",query);
   
-  var options = { file: 'unknown' };
+  var options = { file: this.resourcePath };
   imports.push(`const console = require('${query.logger||'brd-log/logger'}')(${JSON.stringify(options)});`);
   
 	var prefix = HEADER + imports.join("\n") + "\n\n";
