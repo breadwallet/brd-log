@@ -14,9 +14,9 @@ module.exports = function(content, sourceMap) {
 	var imports = [];
 	var postfixes = [];
 
-  console.log("ResourcePath: ",this.resourcePath);
-  console.log("request: ",this.request);
-  console.log("QUERY: ",query);
+//  console.log("ResourcePath: ",this.resourcePath);
+//  console.log("request: ",this.request);
+//  console.log("QUERY: ",query);
   
   var options = { file: 'unknown' };
   imports.push(`const console = require('${query.logger||'brd-log/logger'}')(${JSON.stringify(options)});`);
@@ -37,7 +37,7 @@ module.exports = function(content, sourceMap) {
 	}
   
   var ret = prefix + content + postfix;
-  console.log("RET: ",ret);
+//  console.log("RET: ",ret);
   return ret;
 }
 
