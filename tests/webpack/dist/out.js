@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = {\n  log(hash,...args) {\n    var middleware = ((hash && hash.middleware) || []).concat(this.middleware);\n    \n    (function caller(middleware) {\n      return function(hash,...args) {\n        var next = caller(middleware.slice(1));\n        middleware[0](next,hash,...args);\n      };\n    })(middleware)(hash,...args);\n  },\n  middleware: [],\n};\n\n\n//# sourceURL=webpack:////Users/dstaudigel/brd/log/core.js?");
+eval("module.exports = {\n  extend() {\n    return Array.prototype.reduce.call(arguments,function(accum,obj) {\n      for(var k in obj) {\n        accum[k] = obj[k];\n      }\n      return accum;\n    },{});\n  },\n  log(hash,...args) {\n    var middleware = ((hash && hash.middleware) || []).concat(this.middleware);\n    \n    (function caller(middleware) {\n      return function(hash,...args) {\n        var next = caller(middleware.slice(1));\n        middleware[0](next,hash,...args);\n      };\n    })(middleware)(hash,...args);\n  },\n  middleware: [],\n};\n\n\n//# sourceURL=webpack:////Users/dstaudigel/brd/log/core.js?");
 
 /***/ }),
 
@@ -104,7 +104,7 @@ eval("module.exports = {\n  log(hash,...args) {\n    var middleware = ((hash && 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var Core = __webpack_require__(/*! ./core */ \"../../core.js\");\n\nclass Logger {\n  constructor(options) {\n    this.options = options;\n  }\n\n  extend(options) {\n    return new Logger({ ...this.options, ...options });\n  }\n  \n  log(...args) {\n    Core.log({ ...this.options, level: 'log' },...args);\n  }\n\n  info(...args) {\n    Core.log({ ...this.options, level: 'info' },...args);\n  }\n  \n  warn(...args) {\n    Core.log({ ...this.options, level: 'warn' },...args);\n  }\n\n  error(...args) {\n    Core.log({ ...this.options, level: 'error' },...args);\n  }\n}\n\nmodule.exports = function(options) {\n  return new Logger(options);\n}\n\n\n//# sourceURL=webpack:////Users/dstaudigel/brd/log/logger.js?");
+eval("var Core = __webpack_require__(/*! ./core */ \"../../core.js\");\n\nclass Logger {\n  constructor(options) {\n    this.options = options;\n  }\n\n  extend(options) {\n    return new Logger(Core.extend(this.options,options));\n  }\n  \n  log() {\n    Core.log.apply(Core,[Core.extend(this.options, { level: 'log' })].concat(Array.prototype.slice.call(arguments)));\n  }\n\n  info() {\n    Core.log.apply(Core,[Core.extend(this.options, { level: 'info' })].concat(Array.prototype.slice.call(arguments)));\n  }\n  \n  warn() {\n    Core.log.apply(Core,[Core.extend(this.options, { level: 'warn' })].concat(Array.prototype.slice.call(arguments)));\n  }\n\n  error() {\n    Core.log.apply(Core,[Core.extend(this.options, { level: 'error' })].concat(Array.prototype.slice.call(arguments)));\n  }\n}\n\nmodule.exports = function(options) {\n  return new Logger(options);\n}\n\n\n//# sourceURL=webpack:////Users/dstaudigel/brd/log/logger.js?");
 
 /***/ }),
 
