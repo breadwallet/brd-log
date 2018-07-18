@@ -6,23 +6,23 @@ class Logger {
   }
 
   extend(options) {
-    return new Logger({ ...this.options, ...options });
+    return new Logger(Core.extend(this.options,options));
   }
   
-  log(...args) {
-    Core.log({ ...this.options, level: 'log' },...args);
+  log() {
+    Core.log.apply(Core,[Core.extend(this.options, { level: 'log' })].concat(Array.prototype.slice.call(arguments)));
   }
 
-  info(...args) {
-    Core.log({ ...this.options, level: 'info' },...args);
+  info() {
+    Core.log.apply(Core,[Core.extend(this.options, { level: 'info' })].concat(Array.prototype.slice.call(arguments)));
   }
   
-  warn(...args) {
-    Core.log({ ...this.options, level: 'warn' },...args);
+  warn() {
+    Core.log.apply(Core,[Core.extend(this.options, { level: 'warn' })].concat(Array.prototype.slice.call(arguments)));
   }
 
-  error(...args) {
-    Core.log({ ...this.options, level: 'error' },...args);
+  error() {
+    Core.log.apply(Core,[Core.extend(this.options, { level: 'error' })].concat(Array.prototype.slice.call(arguments)));
   }
 }
 

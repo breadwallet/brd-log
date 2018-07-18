@@ -1,4 +1,12 @@
 module.exports = {
+  extend() {
+    return Array.prototype.reduce.call(arguments,function(accum,obj) {
+      for(var k in obj) {
+        accum[k] = obj[k];
+      }
+      return accum;
+    },{});
+  },
   log(hash,...args) {
     var middleware = ((hash && hash.middleware) || []).concat(this.middleware);
     
